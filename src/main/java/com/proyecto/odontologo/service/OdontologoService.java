@@ -18,4 +18,7 @@ public interface OdontologoService {
 	public void eliminarOdontologo (int idodontologo) throws Exception;
 	
 	public Odontologo buscarPorId (int id) throws Exception;
+	
+    public Odontologo buscarPorDni(String dni) throws Exception;
+
 }

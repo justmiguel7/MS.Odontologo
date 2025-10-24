@@ -1,6 +1,7 @@
 package com.proyecto.odontologo.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,28 +22,35 @@ public class OdontologoController {
     private OdontologoService odontologoService;
 
     // 🔹 Crear odontólogo
-    @RequestMapping(value = "/agregar", method = {RequestMethod.POST})
+    @PostMapping("/agregar")
     public ResponseEntity<OdontologoDTO> persistirOdontologo(@Valid @RequestBody OdontologoDTO odontologoDTO) throws Exception {
         odontologoService.agregarOdontologo(odontologoDTO);
         return new ResponseEntity<>(odontologoDTO, HttpStatus.CREATED);
     }
 
-    // 🔹 Buscar por ID (✅ usado por el BFF)
-    @RequestMapping(value = "/buscarid/{id}", method = {RequestMethod.GET})
+    // 🔹 Buscar por ID
+    @GetMapping("/buscarid/{id}")
     public ResponseEntity<Odontologo> buscarPorId(@PathVariable("id") int id) throws Exception {
         Odontologo odontologo = odontologoService.buscarPorId(id);
         return new ResponseEntity<>(odontologo, HttpStatus.OK);
     }
 
+    // 🔹 Buscar por DNI (nuevo)
+    @GetMapping("/buscarPorDni/{dni}")
+    public ResponseEntity<Odontologo> buscarPorDni(@PathVariable("dni") String dni) throws Exception {
+        Odontologo odontologo = odontologoService.buscarPorDni(dni);
+        return new ResponseEntity<>(odontologo, HttpStatus.OK);
+    }
+
     // 🔹 Buscar por nombre
-    @RequestMapping(value = "/buscarnombre/{nombre}", method = {RequestMethod.GET})
+    @GetMapping("/buscarnombre/{nombre}")
     public ResponseEntity<Odontologo> buscarPorNombre(@PathVariable("nombre") String nombre) throws Exception {
         Odontologo odontologo = odontologoService.buscarPorNOmbre(nombre);
         return new ResponseEntity<>(odontologo, HttpStatus.OK);
     }
 
     // 🔹 Buscar por nombre y apellido
-    @RequestMapping(value = "/buscarPorapellido/{nombre}/{apellido}", method = {RequestMethod.GET})
+    @GetMapping("/buscarPorapellido/{nombre}/{apellido}")
     public ResponseEntity<Odontologo> buscarPorNombreYApellido(
             @PathVariable("nombre") String nombre,
             @PathVariable("apellido") String apellido) throws Exception {
@@ -51,13 +59,13 @@ public class OdontologoController {
     }
 
     // 🔹 Listado completo
-    @RequestMapping(value = "/listado", method = {RequestMethod.GET})
+    @GetMapping("/listado")
     public ResponseEntity<List<Odontologo>> listado() throws Exception {
         return new ResponseEntity<>(odontologoService.listado(), HttpStatus.OK);
     }
 
     // 🔹 Eliminar odontólogo
-    @RequestMapping(value = "/eliminar/{id}", method = {RequestMethod.DELETE})
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarOdontologo(@PathVariable("id") int idodontologo) throws Exception {
         odontologoService.eliminarOdontologo(idodontologo);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -21,7 +21,7 @@ public class OdontologoServiceImp implements OdontologoService{
 	@Override
 	public Odontologo agregarOdontologo(OdontologoDTO odontologoDTO) throws Exception {
 		String codigo = UUID.randomUUID().toString();
-		Odontologo odontologo =  odontologoRepository.save(odontologoDTO.toEntity(codigo));
+		Odontologo odontologo =  odontologoRepository.save(odontologoDTO.toEntity());
 		return odontologo;
 	}
 
@@ -59,4 +59,10 @@ public class OdontologoServiceImp implements OdontologoService{
         return optPaciente.orElseThrow(() -> new Exception("Paciente no encontrado con id: " + id));
     }
     
+    
+    @Override
+    public Odontologo buscarPorDni(String dni) throws Exception {
+        return odontologoRepository.findByDni(dni)
+                .orElseThrow(() -> new Exception("Odontologo no encontrado con DNI: " + dni));
+    }
 }

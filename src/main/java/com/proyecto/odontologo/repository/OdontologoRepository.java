@@ -13,4 +13,8 @@ public interface OdontologoRepository extends JpaRepository<Odontologo, Integer>
 	public Optional<Odontologo> findByNombreAndApellido (String nombre, String apellido) throws Exception; 
 
 	public Optional <Odontologo> findByIdodontologo (int odontologoid) throws Exception; 
+	
+    public Optional<Odontologo> findByDni(String dni) throws Exception;
+
+    
 }

@@ -49,20 +49,35 @@ public class OdontologoDTO {
 	
 	private LocalDate fecharegistro;
 
+    public OdontologoDTO() {}
 
 	
-	
-	public Odontologo toEntity(String codigo) {
-	    return new Odontologo(
-	        this.nombre,
-	        this.apellido,
-	        this.dni,
-	        this.especializacion,
-	        this.matricula,
-	        this.telefono,
-	        this.email,
-	        this.fecharegistro);
-	}
+
+    // 🔹 Convierte DTO a entidad
+    public Odontologo toEntity() {
+        Odontologo odontologo = new Odontologo();
+        odontologo.setIdodontologo(this.idodontologo);
+        odontologo.setNombre(this.nombre);
+        odontologo.setApellido(this.apellido);
+        odontologo.setDni(this.dni);
+        odontologo.setTelefono(this.telefono);
+        odontologo.setEmail(this.email);
+        odontologo.setMatricula(this.matricula);
+        return odontologo;
+    }
+
+    // 🔹 Convierte entidad a DTO
+    public static OdontologoDTO fromEntity(Odontologo odontologo) {
+        OdontologoDTO dto = new OdontologoDTO();
+        dto.setIdodontologo(odontologo.getIdodontologo());
+        dto.setNombre(odontologo.getNombre());
+        dto.setApellido(odontologo.getApellido());
+        dto.setDni(odontologo.getDni());
+        dto.setTelefono(odontologo.getTelefono());
+        dto.setEmail(odontologo.getEmail());
+        dto.setMatricula(odontologo.getMatricula());
+        return dto;
+    }
 
 	
 	
