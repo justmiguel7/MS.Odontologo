@@ -26,8 +26,6 @@ public class OdontologoDTO {
 	@Size(min = 4, max = 30,  message = "la longitud del apellido es entre 4 y 30 caracteres")
 	private String apellido;
 	
-	private String codigo;
-	
 	@NotEmpty
 	@Size(min = 8, max = 8 , message = "la longitud del dni tiene que ser de 8 digitos")
 	private String dni;
@@ -46,7 +44,7 @@ public class OdontologoDTO {
 	private String telefono;
 	
 	@NotEmpty
-	@Size(min = 4, max = 20 , message = "la longitud del email es entre 4 y 20 caracteres")
+	@Size(min = 4, max = 35 , message = "la longitud del email es entre 4 y 35 caracteres")
 	private String email;
 	
 	private LocalDate fecharegistro;
@@ -65,6 +63,8 @@ public class OdontologoDTO {
         odontologo.setTelefono(this.telefono);
         odontologo.setEmail(this.email);
         odontologo.setMatricula(this.matricula);
+        odontologo.setEspecializacion(this.especializacion);
+        odontologo.setFecharegistro(this.fecharegistro);
         return odontologo;
     }
 
@@ -78,6 +78,8 @@ public class OdontologoDTO {
         dto.setTelefono(odontologo.getTelefono());
         dto.setEmail(odontologo.getEmail());
         dto.setMatricula(odontologo.getMatricula());
+        dto.setEspecializacion(odontologo.getEspecializacion());
+        dto.setFecharegistro(odontologo.getFecharegistro());
         return dto;
     }
 
