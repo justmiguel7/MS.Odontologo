@@ -9,6 +9,7 @@ import com.proyecto.odontologo.entidades.Odontologo;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -40,7 +41,8 @@ public class OdontologoDTO {
 	private String matricula;
 	
 	@NotEmpty
-	@Size(min = 10, max = 12 , message = "la longitud de la matricula es entre 4 y 20 caracteres")
+	@Size(min = 10, max = 12, message = "El teléfono debe tener entre 10 y 12 caracteres")
+	@Pattern(regexp = "\\d+", message = "El teléfono solo debe contener números")
 	private String telefono;
 	
 	@NotEmpty
