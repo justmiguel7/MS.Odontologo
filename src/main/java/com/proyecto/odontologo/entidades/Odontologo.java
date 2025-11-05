@@ -18,9 +18,9 @@ import lombok.Data;
 @Data
 public class Odontologo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idodontologo;
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY) 
+	 private int idodontologo;
 	
 	@Column(name = "nombre")
 	private String nombre;

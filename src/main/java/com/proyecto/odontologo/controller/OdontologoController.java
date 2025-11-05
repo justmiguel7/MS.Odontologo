@@ -24,9 +24,15 @@ public class OdontologoController {
     // 🔹 Crear odontólogo
     @PostMapping("/agregar")
     public ResponseEntity<OdontologoDTO> persistirOdontologo(@Valid @RequestBody OdontologoDTO odontologoDTO) throws Exception {
-        odontologoService.agregarOdontologo(odontologoDTO);
-        return new ResponseEntity<>(odontologoDTO, HttpStatus.CREATED);
+        // 🔹 Guardamos la entidad y obtenemos el objeto persistido con ID
+        Odontologo odontologoGuardado = odontologoService.agregarOdontologo(odontologoDTO);
+        
+        // 🔹 Convertimos la entidad persistida de vuelta a DTO
+        OdontologoDTO dtoResponse = OdontologoDTO.fromEntity(odontologoGuardado);
+        
+        return new ResponseEntity<>(dtoResponse, HttpStatus.CREATED);
     }
+
 
     // 🔹 Buscar por ID
     @GetMapping("/buscarid/{id}")
